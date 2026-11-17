@@ -1,0 +1,66 @@
+<Window x:Class="A_PRN212.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A_PRN212"
+        xmlns:mvvm="clr-namespace:A_PRN212.MVVM"
+        mc:Ignorable="d"
+        Title="Library Management - Sign In"
+        Height="560" Width="900"
+        Background="{StaticResource AuthBackgroundBrush}">
+    <Grid>
+        <Border Style="{StaticResource DialogCardBorderStyle}"
+                Width="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                mvvm:UiAnimation.Entrance="Dialog">
+            <StackPanel>
+                <Border Width="52" Height="52" CornerRadius="14"
+                        Background="{StaticResource PrimarySoftBrush}"
+                        HorizontalAlignment="Center" Margin="0,0,0,14">
+                    <TextBlock Text="📚" FontSize="24"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Border>
+
+                <TextBlock Text="Welcome Back" FontSize="24" FontWeight="Bold"
+                           Foreground="{StaticResource TextPrimaryBrush}"
+                           HorizontalAlignment="Center"/>
+                <TextBlock Text="Sign in to access your library workspace"
+                           FontSize="13" Foreground="{StaticResource TextMutedBrush}"
+                           HorizontalAlignment="Center" Margin="0,4,0,22"/>
+
+                <Label Content="Username"/>
+                <TextBox Name="txtUsername"
+                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                         Margin="0,0,0,10"/>
+
+                <Label Content="Password"/>
+                <PasswordBox Name="txtPassword"
+                             PasswordChanged="txtPassword_PasswordChanged"
+                             Margin="0,0,0,18"/>
+
+                <Button Name="btnLogin" Content="Sign In"
+                        Height="40" FontSize="14"
+                        Command="{Binding LoginCommand}"
+                        IsDefault="True"/>
+
+                <Border Height="1" Background="{StaticResource BorderSubtleBrush}" Margin="0,20,0,16"/>
+
+                <TextBlock HorizontalAlignment="Center" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}">
+                    <Run Text="Don't have an account? " />
+                    <Hyperlink Command="{Binding NavigateSignUpCommand}" Foreground="{StaticResource PrimaryBrush}">
+                        <Run Text="Sign up" FontWeight="SemiBold"/>
+                    </Hyperlink>
+                </TextBlock>
+
+                <TextBlock HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="13" Foreground="{StaticResource TextSecondaryBrush}">
+                    <Run Text="Forgot password? " />
+                    <Hyperlink Command="{Binding NavigateForgotPasswordCommand}" Foreground="{StaticResource PrimaryBrush}">
+                        <Run Text="Reset here" FontWeight="SemiBold"/>
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,106 @@
+<Window x:Class="A_PRN212.Book_user"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A_PRN212"
+        xmlns:mvvm="clr-namespace:A_PRN212.MVVM"
+        mc:Ignorable="d"
+        Title="Browse Books" Height="680" Width="1100">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="78"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Background="{StaticResource HeaderGradientBrush}" Padding="28,14">
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Browse &amp; Borrow Books" Style="{StaticResource PageTitleStyle}" FontSize="20"/>
+                    <TextBlock Text="Search titles by name or publisher and borrow directly" Style="{StaticResource PageSubtitleStyle}" FontSize="12"/>
+                </StackPanel>
+                <Button x:Name="btnReturn" Content="← Back to Home"
+                        Style="{StaticResource HeaderButtonStyle}"
+                        HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Width="130" Click="btnReturn_Click"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="340"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Style="{StaticResource CardBorderStyle}" Padding="14"
+                    mvvm:UiAnimation.Entrance="Surface" mvvm:UiAnimation.StaggerIndex="0">
+                <DataGrid x:Name="dataGridBooks"
+                          ItemsSource="{Binding Books}"
+                          SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding BookId}" Width="55"/>
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*"/>
+                        <DataGridTextColumn Header="Genre" Binding="{Binding GenreName}" Width="110"/>
+                        <DataGridTextColumn Header="Author" Binding="{Binding AuthorName}" Width="135"/>
+                        <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}" Width="130"/>
+                        <DataGridTextColumn Header="Qty" Binding="{Binding Quantity}" Width="60"/>
+                        <DataGridTextColumn Header="Avail" Binding="{Binding Available}" Width="65"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Border>
+
+            <Border Grid.Column="2" Style="{StaticResource CardBorderStyle}"
+                    mvvm:UiAnimation.Entrance="Surface" mvvm:UiAnimation.StaggerIndex="1">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Book Information" Style="{StaticResource SectionTitleStyle}"/>
+
+                        <Label Content="Book ID"/>
+                        <TextBox x:Name="txtId" Text="{Binding BookIdText, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+
+                        <Label Content="Title (Searchable)"/>
+                        <TextBox x:Name="txtTitle" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Author"/>
+                        <TextBox x:Name="txtAuthorId" Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+
+                        <Label Content="Publisher (Searchable)"/>
+                        <TextBox x:Name="txtPublisher" Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        <Label Content="Genre"/>
+                        <TextBox x:Name="txtGenreId" Text="{Binding GenreName, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+
+                        <Grid Margin="0,2,0,16">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="12"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Label Content="Quantity"/>
+                                <TextBox x:Name="txtQuantity" Text="{Binding QuantityText, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="Available"/>
+                                <TextBox x:Name="txtAvailable" Text="{Binding AvailableText, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <UniformGrid Columns="2" Margin="0,0,0,10">
+                            <Button x:Name="btnSearch" Content="Search" Style="{StaticResource PrimaryButtonStyle}" Command="{Binding SearchCommand}" Margin="0,0,6,0"/>
+                            <Button x:Name="btnClear" Content="Clear" Style="{StaticResource SecondaryButtonStyle}" Command="{Binding ClearCommand}" Margin="6,0,0,0"/>
+                        </UniformGrid>
+
+                        <Button x:Name="btnBorrow" Content="Borrow Selected Book"
+                                Style="{StaticResource SuccessButtonStyle}"
+                                Height="40"
+                                Command="{Binding BorrowCommand}"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

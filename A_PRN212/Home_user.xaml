@@ -1,0 +1,147 @@
+<Window x:Class="A_PRN212.Home_user"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:A_PRN212"
+        xmlns:mvvm="clr-namespace:A_PRN212.MVVM"
+        mc:Ignorable="d"
+        Title="Home - Reader Portal" Height="620" Width="960">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="116"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header Banner -->
+        <Border Grid.Row="0" Background="{StaticResource HeaderGradientBrush}" Padding="32,20">
+            <Grid>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="Reader Library Portal" Style="{StaticResource PageTitleStyle}"/>
+                    <TextBlock Text="{Binding WelcomeTitle}" Style="{StaticResource PageSubtitleStyle}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Border Background="#26FFFFFF" CornerRadius="16" Padding="12,6" Margin="0,0,12,0"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="Reader" Foreground="White" FontSize="12" FontWeight="SemiBold"/>
+                    </Border>
+                    <Button x:Name="btnLogout" Content="Sign Out"
+                            Style="{StaticResource HeaderButtonStyle}"
+                            Width="100" Click="btnLogout_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Dashboard Grid (3x2 = 6 Cards) -->
+        <Grid Grid.Row="1" Margin="32,28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="5"
+                       Text="Explore &amp; Borrow"
+                       Style="{StaticResource SectionTitleStyle}"
+                       Margin="0,0,0,16"/>
+
+            <Button Name="btnBook" Grid.Row="1" Grid.Column="0"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="0"
+                    Click="btnBook_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#ECFDF5" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="📖" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Browse Books" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Search catalog &amp; borrow available books" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="btnBorrowRecord" Grid.Row="1" Grid.Column="2"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="1"
+                    Click="btnBorrowRecord_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#E0F2FE" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="📋" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="My Borrowings" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="View borrow history &amp; settle fines" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="btnUser" Grid.Row="1" Grid.Column="4"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="2"
+                    Click="btnUser_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#EEF2FF" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="👤" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="My Profile" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="View and update your account details" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="btnAuthor" Grid.Row="3" Grid.Column="0"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="3"
+                    Click="btnAuthor_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#FCE7F3" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="✍️" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Authors" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Discover authors and biographies" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="btnGenre" Grid.Row="3" Grid.Column="2"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="4"
+                    Click="btnGenre_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#FEF3C7" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="🏷️" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Genres" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Explore book genres and descriptions" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="btnRule" Grid.Row="3" Grid.Column="4"
+                    Style="{StaticResource DashboardCardButtonStyle}"
+                    mvvm:UiAnimation.Entrance="StaggerItem"
+                    mvvm:UiAnimation.StaggerIndex="5"
+                    Click="btnRule_Click">
+                <StackPanel VerticalAlignment="Center">
+                    <Border Width="44" Height="44" CornerRadius="12" Background="#F1F5F9" HorizontalAlignment="Left" Margin="0,0,0,14">
+                        <TextBlock Text="📜" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Library Rules" FontSize="17" FontWeight="Bold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock Text="Review borrowing policies &amp; regulations" FontSize="12"
+                               Foreground="{StaticResource TextMutedBrush}" TextWrapping="Wrap" Margin="0,4,0,0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
