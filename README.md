@@ -88,4 +88,4 @@ Seeded in `database.sql` (stored as SHA-256 hashes):
 | Admin | `dtd` | `123` |
 | Admin | `admin2` | `Admin@123` |
 | Librarian | `librarian1` | `Lib@1234` |
-| Reader | `reader1` | `Reader@123` |
+| Reader | `reader1` | `123` |
