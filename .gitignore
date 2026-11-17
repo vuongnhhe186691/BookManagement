@@ -1,0 +1,48 @@
+# Visual Studio & IDE caches
+.vs/
+.vscode/
+.idea/
+.agents/
+.agent/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Ll]og/
+[Ll]ogs/
+
+# Test & coverage results
+TestResults/
+coverage*.json
+coverage*.xml
+*.trx
+*.coverage
+*.coveragexml
+
+# NuGet & packages
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# OS & temporary files
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+*.bak
+*~
